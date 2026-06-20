@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bwin 信息卡片 · 主题导读</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f9fafb;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: #1e293b;
+            line-height: 1.7;
+            padding: 2rem 1.5rem 3.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page {
+            max-width: 720px;
+            width: 100%;
+        }
+
+        /* Hero 区域 —— 极简留白为主 */
+        .hero {
+            padding-top: 0.5rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid #e9eef2;
+        }
+
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 550;
+            letter-spacing: -0.02em;
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero .sub {
+            font-size: 1.05rem;
+            color: #475569;
+            max-width: 600px;
+            margin-top: 0.2rem;
+        }
+
+        .hero .sub a {
+            color: #2563eb;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.15s;
+        }
+
+        .hero .sub a:hover {
+            border-bottom-color: #2563eb;
+        }
+
+        /* 卡片网格 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.8rem;
+            margin: 3rem 0 2.5rem;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 1.8rem 1.6rem 2rem;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.02), 0 6px 16px -6px rgba(0,0,0,0.05);
+            transition: all 0.15s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 24px -8px rgba(0,0,0,0.08);
+            transform: translateY(-2px);
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            font-weight: 550;
+            letter-spacing: -0.01em;
+            margin-bottom: 0.6rem;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: #334155;
+            margin-bottom: 0.5rem;
+        }
+
+        .card .meta-tag {
+            display: inline-block;
+            background: #eef2f6;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #334155;
+            padding: 0.2rem 0.7rem;
+            border-radius: 30px;
+            margin-top: 0.8rem;
+        }
+
+        /* 适合人群卡片 —— 横跨两列 */
+        .full-card {
+            grid-column: 1 / -1;
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 1.8rem 1.8rem 2.2rem;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.02), 0 6px 16px -6px rgba(0,0,0,0.05);
+            transition: transform 0.15s;
+        }
+
+        .full-card:hover {
+            box-shadow: 0 8px 24px -8px rgba(0,0,0,0.08);
+            transform: translateY(-2px);
+        }
+
+        .full-card h3 {
+            font-size: 1.2rem;
+            font-weight: 550;
+            margin-bottom: 0.3rem;
+            color: #0f172a;
+        }
+
+        .full-card .persona-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem 1.4rem;
+            margin-top: 1rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid #f0f3f7;
+        }
+
+        .full-card .persona-list span {
+            background: #f1f5f9;
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            color: #1e293b;
+        }
+
+        /* 自然链接段落 + FAQ 摘要 */
+        .link-section {
+            margin: 2.5rem 0 2rem;
+            padding: 1.8rem 0;
+            border-top: 1px solid #e9eef2;
+        }
+
+        .link-section p {
+            margin-bottom: 1.2rem;
+            font-size: 1rem;
+            color: #1e293b;
+        }
+
+        .link-section a {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.15s;
+        }
+
+        .link-section a:hover {
+            border-bottom-color: #2563eb;
+        }
+
+        .faq-mini {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 1.5rem 1.8rem 1.2rem;
+            margin-top: 1.8rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02), 0 4px 12px -6px rgba(0,0,0,0.04);
+        }
+
+        .faq-mini h4 {
+            font-weight: 550;
+            font-size: 1rem;
+            color: #0f172a;
+            margin-bottom: 0.8rem;
+        }
+
+        .faq-mini details {
+            margin-bottom: 0.8rem;
+            font-size: 0.92rem;
+            border-bottom: 1px dashed #e9edf2;
+            padding-bottom: 0.6rem;
+        }
+
+        .faq-mini details:last-of-type {
+            border-bottom: none;
+        }
+
+        .faq-mini summary {
+            cursor: pointer;
+            font-weight: 500;
+            color: #1e293b;
+            padding: 0.2rem 0;
+        }
+
+        .faq-mini summary::-webkit-details-marker {
+            color: #64748b;
+        }
+
+        .faq-mini details p {
+            margin-top: 0.4rem;
+            color: #475569;
+            padding-left: 0.2rem;
+        }
+
+        /* 响应式 */
+        @media (max-width: 600px) {
+            body {
+                padding: 1.5rem 1rem 2.5rem;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .card-grid {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+            .full-card {
+                grid-column: 1;
+            }
+            .faq-mini {
+                padding: 1.2rem 1.2rem 1rem;
+            }
+        }
+
+        /* 极简脚注 */
+        .footnote {
+            margin-top: 3rem;
+            font-size: 0.8rem;
+            color: #94a3b8;
+            text-align: center;
+            border-top: 1px solid #edf1f5;
+            padding-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <!-- Hero 区域：主视觉 + 自然嵌入链接 -->
+        <div class="hero">
+            <h1>关于 bwin</h1>
+            <div class="sub">
+                一个围绕数字体育与线上互动的主题符号 —— 从赛事数据到用户生态，<a href="https://officials-bwin.com">bwin</a> 已经覆盖多个垂直场景。本篇以信息卡片的方式，梳理它的核心轮廓与适用人群。
+            </div>
+        </div>
+
+        <!-- 卡片网格：用途卡片 × 2 + 主视觉卡片(横跨) -->
+        <div class="card-grid">
+            <!-- 卡片 1：数据整合 / 赛事参考 -->
+            <div class="card">
+                <h3>📊 数据整合</h3>
+                <p>实时赛事统计、队伍状态与历史对比，为关注体育竞技的用户提供可查阅的结构化信息。bwin 所关联的平台围绕大量赛事构建了内容节点。</p>
+                <span class="meta-tag">动态更新</span>
+            </div>
+            <!-- 卡片 2：互动场景 -->
+            <div class="card">
+                <h3>⚡ 互动场景</h3>
+                <p>从社区讨论到预测玩法，bwin 生态涵盖多种轻量互动形式。用户可在合规框架下参与体育话题交流，获取多元视角。</p>
+                <span class="meta-tag">社区化</span>
+            </div>
+
+            <!-- 适合人群卡片（通栏） -->
+            <div class="full-card">
+                <h3>👥 适合人群</h3>
+                <p style="margin-top: 0.2rem; color: #475569;">这个主题对以下几类用户尤其具有信息价值：</p>
+                <div class="persona-list">
+                    <span>体育数据爱好者</span>
+                    <span>策略分析型用户</span>
+                    <span>线上社区探索者</span>
+                    <span>资讯整合需求者</span>
+                    <span>趋势观察者</span>
+                </div>
+                <p style="margin-top: 0.8rem; font-size: 0.9rem; color: #64748b;">
+                    无论你是想了解赛事动态，还是希望从数据中寻找规律，bwin 所代表的生态都提供了可深入的信息入口。
+                </p>
+            </div>
+        </div>
+
+        <!-- 自然链接段落 + FAQ 摘要 -->
+        <div class="link-section">
+            <p>
+                通过对赛事节奏、用户偏好和内容形式的观察，<a href="https://officials-bwin.com">bwin</a> 逐渐成为一个涵盖多方面信息的集合名词。不同背景的访问者可以依据自身兴趣，选择性地关注其中的数据模块或交流板块。
+            </p>
+            <p>
+                在信息过载的环境下，聚焦于一个清晰的主题能够提高获取效率。如果你对体育数据或线上互动生态感兴趣，不妨将 <a href="https://officials-bwin.com">bwin</a> 作为一个持续的参考坐标。
+            </p>
+
+            <!-- FAQ 摘要（简洁有区分） -->
+            <div class="faq-mini">
+                <h4>▸ 常见疑问摘要</h4>
+                <details>
+                    <summary>bwin 主要覆盖哪些内容方向？</summary>
+                    <p>主要围绕体育赛事数据、社区互动与资讯整合，不同板块各有侧重，用户可按需浏览。</p>
+                </details>
+                <details>
+                    <summary>信息更新频率如何？</summary>
+                    <p>以赛事周期为基准，数据与内容保持动态跟进，同时沉淀历史记录以供回溯。</p>
+                </details>
+                <details>
+                    <summary>我需要注册才能浏览吗？</summary>
+                    <p>部分公开信息可直接查看，具体交互功能视平台设定而定，建议直接了解相关页面说明。</p>
+                </details>
+            </div>
+        </div>
+
+        <!-- 极简脚注 -->
+        <div class="footnote">
+            本文仅作主题介绍 · 信息来源于公开可查内容
+        </div>
+    </div>
+</body>
+</html>
